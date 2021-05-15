@@ -1,0 +1,40 @@
+{
+  "name": "amaze",
+  "version": "1.0.0",
+  "description": "The Amaze audio game",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch ./js/main.js -d . --target=electron --no-hmr",
+    "build": "parcel build ./js/main.js -d . --target=electron",
+    "start": "electron .",
+    "run": "npm run build && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Quin Marilyn",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "copy-to-clipboard": "^3.2.0",
+    "http-server": "^0.12.3",
+    "jquery": "^3.6.0",
+    "number-words": "^1.1.0",
+    "parcel-bundler": "^1.12.4",
+    "s": "^0.1.1",
+    "sono": "^2.1.6",
+    "speak-tts": "^2.0.8",
+    "unique-random": "^2.1.0"
+  },
+  "devDependencies": {
+    "electron": "^8.1.1",
+    "electron-builder": "^22.11.1"
+  },
+  "build": {
+    "appId": "amaze",
+    "mac": {
+      "category": "game"
+    }
+  }
+}
