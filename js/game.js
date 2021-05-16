@@ -7,6 +7,7 @@ import {KeyEvent} from './keycodes.js';
 import {utils} from './utilities';
 import {so} from './soundObject';
 import {OldTimer} from './oldtimer';
+import {Map} from './map';
 
 class Game {
   constructor() {
@@ -21,6 +22,7 @@ class Game {
     this.y = 0;
     this.walkTime = 50;
     this.walkTimer = new OldTimer();
+    this.map = new Map();
   }
 
   start() {
@@ -38,39 +40,53 @@ class Game {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.x++;
-        playSteps();
+        this.playSteps('up');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_LEFT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.y--;
-        playSteps();
+        this.playSteps('left');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_DOWN)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.x--;
-        playSteps();
+        this.playSteps('down');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_RIGHT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.y++;
-        playSteps();
+        this.playSteps('right');
       }
     }
   }
 
   render() {
   }
-}
 
-function playSteps() {
-  let stepSnd = so.create('steps/' + utils.randomInt(1, 5));
-  stepSnd.play();
+  playSteps(dir) {
+    if (this.map.getTileAt(this.x, this.y) == 'wall') {
+      let stepSnd = so.create('steps/wall');
+      stepSnd.play();
+      if (dir == 'up') {
+        this.y--;
+      } else if (dir == 'left') {
+        this.x++;
+      } else if (dir == 'down') {
+        this.y++;
+      } else if (dir == 'right') {
+        this.x--
+      }
+    } else {
+      let stepSnd = so.create('steps/' + utils.randomInt(1, 5));
+      stepSnd.play();
+    }
+  }
 }
 
 export { Game }
