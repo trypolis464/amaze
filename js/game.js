@@ -6,6 +6,7 @@ import {KeyboardInput} from './input.js';
 import {KeyEvent} from './keycodes.js';
 import {utils} from './utilities';
 import {so} from './soundObject';
+import {OldTimer} from './oldtimer';
 
 class Game {
   constructor() {
@@ -18,6 +19,8 @@ class Game {
     this.level = 1;
     this.x = 0;
     this.y = 0;
+    this.walkTime = 50;
+    this.walkTimer = new OldTimer();
   }
 
   start() {
@@ -32,20 +35,32 @@ class Game {
       speech.speak(this.x + ', ' + this.y + '.');
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_UP)) {
-      this.x++;
-      playSteps();
+      if (this.walkTimer.elapsed >= this.walkTime) {
+        this.walkTimer.restart();
+        this.x++;
+        playSteps();
+      }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_LEFT)) {
-      this.y--;
-      playSteps();
+      if (this.walkTimer.elapsed >= this.walkTime) {
+        this.walkTimer.restart();
+        this.y--;
+        playSteps();
+      }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_DOWN)) {
-      this.x--;
-      playSteps();
+      if (this.walkTimer.elapsed >= this.walkTime) {
+        this.walkTimer.restart();
+        this.x--;
+        playSteps();
+      }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_RIGHT)) {
-      this.y++;
-      playSteps();
+      if (this.walkTimer.elapsed >= this.walkTime) {
+        this.walkTimer.restart();
+        this.y++;
+        playSteps();
+      }
     }
   }
 
