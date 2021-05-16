@@ -27,6 +27,8 @@ class Game {
 
   start() {
     this.timer.start();
+    this.map.spawnPlatform(-1, 51, -1, 51, 'wall');
+    this.map.spawnPlatform(0, 50, 0, 50, 'tile');
   }
 
   update(dt) {
@@ -39,28 +41,28 @@ class Game {
     if (this.input.isJustPressed(KeyEvent.DOM_VK_UP)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
-        this.x++;
+        this.y++;
         this.playSteps('up');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_LEFT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
-        this.y--;
+        this.x--;
         this.playSteps('left');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_DOWN)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
-        this.x--;
+        this.y--;
         this.playSteps('down');
       }
     }
     if (this.input.isJustPressed(KeyEvent.DOM_VK_RIGHT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
-        this.y++;
+        this.x++;
         this.playSteps('right');
       }
     }
