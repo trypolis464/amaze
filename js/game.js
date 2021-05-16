@@ -67,9 +67,6 @@ class Game {
         this.playSteps('right');
       }
     }
-    if (this.input.isJustPressed(KeyEvent.DOM_VK_T)) {
-      speech.speak(utils.getReadableTime(this.gameTimer.elapsed));
-    }
   }
 
   render() {
