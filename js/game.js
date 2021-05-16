@@ -23,6 +23,7 @@ class Game {
     this.walkTime = 50;
     this.walkTimer = new OldTimer();
     this.map = new Map();
+    this.gameTimer = new OldTimer();
   }
 
   start() {
@@ -65,6 +66,9 @@ class Game {
         this.x++;
         this.playSteps('right');
       }
+    }
+    if (this.input.isJustPressed(KeyEvent.DOM_VK_T)) {
+      speech.speak(utils.getReadableTime(this.gameTimer.elapsed));
     }
   }
 
