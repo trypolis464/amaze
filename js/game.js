@@ -20,7 +20,7 @@ class Game {
     this.level = 1;
     this.x = 0;
     this.y = 0;
-    this.walkTime = 50;
+    this.walkTime = 150;
     this.walkTimer = new OldTimer();
     this.map = new Map();
     this.gameTimer = new OldTimer();
@@ -39,28 +39,28 @@ class Game {
     if (this.input.isJustPressed(KeyEvent.DOM_VK_C)) {
       speech.speak(this.x + ', ' + this.y + '.');
     }
-    if (this.input.isJustPressed(KeyEvent.DOM_VK_UP)) {
+    if (this.input.isDown(KeyEvent.DOM_VK_UP)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.y++;
         this.playSteps('up');
       }
     }
-    if (this.input.isJustPressed(KeyEvent.DOM_VK_LEFT)) {
+    if (this.input.isDown(KeyEvent.DOM_VK_LEFT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.x--;
         this.playSteps('left');
       }
     }
-    if (this.input.isJustPressed(KeyEvent.DOM_VK_DOWN)) {
+    if (this.input.isDown(KeyEvent.DOM_VK_DOWN)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.y--;
         this.playSteps('down');
       }
     }
-    if (this.input.isJustPressed(KeyEvent.DOM_VK_RIGHT)) {
+    if (this.input.isDown(KeyEvent.DOM_VK_RIGHT)) {
       if (this.walkTimer.elapsed >= this.walkTime) {
         this.walkTimer.restart();
         this.x++;
